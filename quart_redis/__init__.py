@@ -4,7 +4,7 @@ from aioredis import Redis, from_url
 from quart import Quart
 
 __all__ = ["RedisHandler", "get_redis"]
-__version__ = "0.1.1"
+__version__ = "1.0.0"
 
 
 class RedisHandler:

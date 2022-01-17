@@ -1,4 +1,5 @@
 # Quart-Redis
+[![Documentation Status](https://readthedocs.org/projects/quart-redis/badge/?version=latest)](https://quart-redis.readthedocs.io/en/latest/)
 ![PyPI](https://img.shields.io/pypi/v/quart-redis)
 ![PyPI - Python Version](https://img.shields.io/pypi/pyversions/quart-redis)
 ![PyPI - Downloads](https://img.shields.io/pypi/dm/quart-redis)
@@ -14,6 +15,10 @@ An easy way of setting up a redis connection in quart.
 - aioredis
 
 ## Example of Use
+```
+pip install quart-redis
+```
+
 ```python
 from quart import Quart
 from quart_redis import RedisHandler, get_redis
