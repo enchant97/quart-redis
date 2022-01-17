@@ -7,7 +7,7 @@
 ![Lines of code](https://img.shields.io/tokei/lines/github/enchant97/quart-redis)
 ![GitHub last commit](https://img.shields.io/github/last-commit/enchant97/quart-redis)
 
-A easy way of setting up a redis connection in quart.
+An easy way of setting up a redis connection in quart.
 
 ## Requirements
 - quart
@@ -26,10 +26,11 @@ redis_handler = RedisHandler(app)
 async def index():
     redis = get_redis()
 
-    val = await redis.get("my-key", encoding="utf-8")
+    val = await redis.get("my-key")
 
     if val is None:
         await redis.set("my-key", "it works!")
+        val = await redis.get("my-key")
 
     return val
 ```
