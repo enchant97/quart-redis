@@ -1,4 +1,12 @@
 # Quart-Redis
+![PyPI](https://img.shields.io/pypi/v/quart-redis)
+![PyPI - Python Version](https://img.shields.io/pypi/pyversions/quart-redis)
+![PyPI - Downloads](https://img.shields.io/pypi/dm/quart-redis)
+![GitHub](https://img.shields.io/github/license/enchant97/quart-redis)
+![GitHub issues](https://img.shields.io/github/issues/enchant97/quart-redis)
+![Lines of code](https://img.shields.io/tokei/lines/github/enchant97/quart-redis)
+![GitHub last commit](https://img.shields.io/github/last-commit/enchant97/quart-redis)
+
 A easy way of setting up a redis connection in quart.
 
 ## Requirements
