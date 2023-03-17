@@ -54,7 +54,6 @@ class RedisHandler:
         """
         get the shared redis connection
         """
-        print(f'Type Returned: {type(cls._connection)}')
         return cls._connection
 
 
