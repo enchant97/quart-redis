@@ -1,6 +1,6 @@
 import logging
 
-from redis.asyncio import from_url, Redis
+from redis.asyncio import Redis, from_url
 from quart import Quart
 
 __all__ = ["RedisHandler", "get_redis"]
