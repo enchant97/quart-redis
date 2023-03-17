@@ -1,7 +1,6 @@
 import logging
 
-from redis import asyncio as Redis
-from redis import from_url
+from redis.asyncio import from_url, Redis
 from quart import Quart
 
 __all__ = ["RedisHandler", "get_redis"]
@@ -9,7 +8,6 @@ __version__ = "1.0.0"
 
 
 class RedisHandler:
-    print('Our Fork')
     _connection: Redis = None
     conn_key = "REDIS_URI"
 
@@ -48,7 +46,7 @@ class RedisHandler:
 
         @app.after_serving
         async def close_redis():
-            RedisHandler._connection.close()
+            await RedisHandler._connection.close()
             logging.info("Redis shutdown")
 
     @classmethod
@@ -56,6 +54,7 @@ class RedisHandler:
         """
         get the shared redis connection
         """
+        print(f'Type Returned: {type(cls._connection)}')
         return cls._connection
 
 
