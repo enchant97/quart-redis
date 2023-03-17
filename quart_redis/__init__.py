@@ -1,6 +1,7 @@
 import logging
 
-from aioredis import Redis, from_url
+from redis import asyncio as Redis
+from redis import from_url
 from quart import Quart
 
 __all__ = ["RedisHandler", "get_redis"]
@@ -8,6 +9,7 @@ __version__ = "1.0.0"
 
 
 class RedisHandler:
+    print('Our Fork')
     _connection: Redis = None
     conn_key = "REDIS_URI"
 
