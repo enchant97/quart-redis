@@ -48,7 +48,7 @@ class RedisHandler:
 
         @app.after_serving
         async def close_redis():
-            await RedisHandler._connection.close()
+            RedisHandler._connection.close()
             logging.info("Redis shutdown")
 
     @classmethod
