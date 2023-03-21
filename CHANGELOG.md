@@ -4,6 +4,16 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [2.0.0] - 2023-03-21
+### Added
+- Handle when handler is accessed when not setup
+- Add connection attempt functionality, ensuring a redis connection exists before program launch (can be disabled)
+### Changed
+- Switch to use `redis 4` instead of `aioredis`
+- Use newer Python packaging config format
+- Update minimum version of Quart
+- Use custom internal logger, so it can be customised by users
+
 ## [1.0.0] - 2022-01-17
 ### Added
 - Documentation hosted at [readthedocs](https://quart-redis.readthedocs.io/en/latest/)
