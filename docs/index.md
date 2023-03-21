@@ -2,15 +2,15 @@
 An easy way of setting up a redis connection in quart.
 
 ## Installation
-Install the pip package using pip. The latest compatible release of aioredis will be automatically installed.
+Install the pip package using pip. The latest compatible release of redis will be automatically installed.
 
 ```
 pip install quart-redis
 ```
 
 ## Requirements
-- quart
-- aioredis
+- quart >= 0.18
+- redis >= 4.2
 
 ## Contents
 - [Example Of Usage](./example.md)
