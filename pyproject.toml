@@ -1,3 +1,41 @@
 [build-system]
-requires = ["setuptools", "wheel"]
+requires = ["setuptools ~= 67.0", "wheel"]
 build-backend = "setuptools.build_meta"
+
+[project]
+name = "quart-redis"
+authors = [{name = "Leo Spratt"}]
+description = "A easy way of setting up a redis in quart"
+keywords = ["quart", "asyncio", "redis", "cache"]
+license = {text = "MIT"}
+classifiers = [
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Intended Audience :: Developers",
+    "Environment :: Web Environment",
+    "Topic :: Internet :: WWW/HTTP :: Dynamic Content",
+    "Topic :: Software Development :: Libraries :: Python Modules",
+]
+dependencies = [
+    "quart ~= 0.18",
+    "redis >= 4.2, < 5",
+]
+requires-python = ">=3.9"
+dynamic = ["version", "readme"]
+
+[project.urls]
+homepage = "https://github.com/enchant97/quart-redis"
+documentation = "https://quart-redis.readthedocs.io/en/stable/"
+repository = "https://github.com/enchant97/quart-redis.git"
+changelog = "https://github.com/enchant97/quart-redis/blob/master/CHANGELOG.md"
+
+[tool.setuptools]
+packages = ["quart_redis"]
+
+[tool.setuptools.dynamic]
+version = {attr = "quart_redis.__version__"}
+readme = {file = ["README.md"], content-type = "text/markdown"}
