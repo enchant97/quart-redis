@@ -1,8 +1,9 @@
+import asyncio
 import logging
 from typing import Optional
 
 from quart import Quart
-from redis.asyncio import Redis, from_url
+from redis.asyncio import Redis, RedisError, from_url
 
 __all__ = ["RedisHandler", "get_redis"]
 __version__ = "1.0.0"
@@ -17,6 +18,7 @@ class RedisNotInitialized(Exception):
 class RedisHandler:
     _connection: Optional[Redis] = None
     conn_key = "REDIS_URI"
+    conn_attempts_key = "REDIS_CONN_ATTEMPTS"
 
     def __init__(self, app: Optional[Quart] = None, **kwargs):
         """
@@ -29,6 +31,22 @@ class RedisHandler:
         if app is not None:
             self.init_app(app, **kwargs)
 
+    @staticmethod
+    async def __attempt_to_connect(conn: Redis, attempts: int):
+        for attempt in range(1, attempts + 1):
+            try:
+                await conn.ping()
+                logger.debug("Redis connection established")
+                break
+            except RedisError:
+                logger.warning(
+                    f"Redis connection attempt {attempt} of {attempts} failed"
+                )
+                if attempt == attempts:
+                    logger.critical("Redis connection failed")
+                    raise
+                await asyncio.sleep(2)
+
     def init_app(self, app: Quart, **kwargs):
         """
         get config from quart app
@@ -38,6 +56,7 @@ class RedisHandler:
             :param **kwargs: pass any further arguments to redis
         """
         conn_uri = app.config[self.conn_key]
+        conn_attempts = app.config.get(self.conn_attempts_key, 3)
 
         @app.before_serving
         async def init_redis():
@@ -45,6 +64,11 @@ class RedisHandler:
                 conn_uri,
                 **kwargs
             )
+            if conn_attempts >= 0:
+                await self.__attempt_to_connect(
+                    RedisHandler._connection,
+                    conn_attempts,
+                )
             logger.info("Redis started")
 
         @app.after_serving
