@@ -40,3 +40,22 @@ async def index():
 
     return val
 ```
+
+## Example of a test
+
+Due to quart_redis using before_serving and after_serving, the following pattern needs to be used to test the above code.
+
+```python
+import pytest
+from app import app
+
+@pytest.fixture(name="my_app", scope="function")
+async def _my_app():
+    async with app.test_app() as test_app:
+        yield test_app
+
+async def test_redis(my_app):
+    async with my_app.test_client() as client:
+        result = await client.get("/")
+        assert await result.data == b"it works!"
+```
