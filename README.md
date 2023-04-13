@@ -13,12 +13,10 @@ An easy way of setting up a redis connection in quart.
 - quart >= 0.18
 - redis >= 4.2
 
-## Example of Use
-```
-pip install quart-redis
-```
+## Example
 
 ```python
+# file: app.py
 from quart import Quart
 from quart_redis import RedisHandler, get_redis
 
@@ -41,11 +39,11 @@ async def index():
     return val
 ```
 
-## Example of a test
-
-Due to quart_redis using before_serving and after_serving, the following pattern needs to be used to test the above code.
+## Testing
+Due to quart_redis using `before_serving` and `after_serving`, using the Quart `test_client` requires the use of `test_app`. Pytest example shown below:
 
 ```python
+# file: test.py
 import pytest
 from app import app
 

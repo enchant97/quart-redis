@@ -1,6 +1,8 @@
 # Example Of Usage
+## Example
 
 ```python
+# file: app.py
 from quart import Quart
 from quart_redis import RedisHandler, get_redis
 
@@ -21,4 +23,23 @@ async def index():
         val = await redis.get("my-key")
 
     return val
+```
+
+## Testing
+Due to quart_redis using `before_serving` and `after_serving`, using the Quart `test_client` requires the use of `test_app`. Pytest example shown below:
+
+```python
+# file: test.py
+import pytest
+from app import app
+
+@pytest.fixture(name="my_app", scope="function")
+async def _my_app():
+    async with app.test_app() as test_app:
+        yield test_app
+
+async def test_redis(my_app):
+    async with my_app.test_client() as client:
+        result = await client.get("/")
+        assert await result.data == b"it works!"
 ```
