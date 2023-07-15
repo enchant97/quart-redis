@@ -57,3 +57,7 @@ async def test_redis(my_app):
         result = await client.get("/")
         assert await result.data == b"it works!"
 ```
+
+## Faking Redis
+
+For development and testing, you may not have a running Redis instance. In this case, the [`fakeredis`](https://pypi.org/project/fakeredis/) package may be installed and then used instead of actual redis by setting `USE_FAKE_REDIS` environment variable to true at runtime.
