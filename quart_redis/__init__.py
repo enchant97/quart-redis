@@ -1,9 +1,16 @@
 import asyncio
 import logging
 from typing import Optional
+from os import getenv
 
 from quart import Quart
-from redis.asyncio import Redis, RedisError, from_url
+
+if os.getenv('USE_FAKE_REDIS', 'false').lower() == 'true':
+    from fakeredis.aioredis import FakeRedis as Redis
+    from fakeredis.aioredis import FakeRedisError as RedisError
+    from fakeredis.aioredis import from_url
+else:
+    from redis.asyncio import Redis, RedisError, from_url
 
 __all__ = ["RedisHandler", "get_redis"]
 __version__ = "2.0.0"
