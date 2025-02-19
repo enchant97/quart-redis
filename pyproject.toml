@@ -22,7 +22,7 @@ classifiers = [
 ]
 dependencies = [
     "quart ~= 0.18",
-    "redis >= 4.2, < 5",
+    "redis >= 4.2",
 ]
 requires-python = ">=3.9"
 dynamic = ["version", "readme"]
