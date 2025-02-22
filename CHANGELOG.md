@@ -4,6 +4,17 @@ All notable changes to this project will be documented in this file.
 The format is based on [Keep a Changelog](https://keepachangelog.com/en/1.0.0/),
 and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0.html).
 
+## [3.0.0] - 2025-02-22
+### Added
+- testing via unittest
+### Changed
+- Migrate to use `redis 5`
+- Migrate away from deprecated redis functionality
+### Removed
+- Support for Python <= 3.10
+- Redis <= 4
+- Quart <= 0.20
+
 ## [2.0.0] - 2023-03-21
 ### Added
 - Handle when handler is accessed when not setup

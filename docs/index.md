@@ -9,8 +9,8 @@ pip install quart-redis
 ```
 
 ## Requirements
-- quart >= 0.18
-- redis >= 4.2
+- quart ~= 0.20
+- redis >= 5.2.1, < 6
 
 ## Contents
 - [Example Of Usage](./example.md)
