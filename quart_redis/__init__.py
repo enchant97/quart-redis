@@ -5,7 +5,7 @@ from os import getenv
 
 from quart import Quart
 
-if os.getenv('USE_FAKE_REDIS', 'false').lower() == 'true':
+if getenv("USE_FAKE_REDIS", "false").lower() == "true":
     from fakeredis.aioredis import FakeRedis as Redis
     from fakeredis.aioredis import FakeRedisError as RedisError
     from fakeredis.aioredis import from_url
