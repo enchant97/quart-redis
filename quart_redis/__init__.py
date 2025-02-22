@@ -13,7 +13,7 @@ else:
     from redis.asyncio import Redis, RedisError, from_url
 
 __all__ = ["RedisHandler", "get_redis"]
-__version__ = "2.0.0"
+__version__ = "3.0.0"
 
 logger = logging.getLogger(__name__)
 
