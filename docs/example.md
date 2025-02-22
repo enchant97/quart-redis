@@ -41,5 +41,5 @@ async def _my_app():
 async def test_redis(my_app):
     async with my_app.test_client() as client:
         result = await client.get("/")
-        assert await result.data == b"it works!"
+        assert result == b"it works!"
 ```

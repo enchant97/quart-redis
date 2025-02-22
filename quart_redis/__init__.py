@@ -81,7 +81,7 @@ class RedisHandler:
         @app.after_serving
         async def close_redis():
             if RedisHandler._connection is not None:
-                await RedisHandler._connection.close()
+                await RedisHandler._connection.aclose()
                 logger.info("Redis shutdown")
 
     @classmethod

@@ -9,9 +9,11 @@
 
 An easy way of setting up a redis connection in quart.
 
+> View the docs [here](https://quart-redis.readthedocs.io/en/latest/).
+
 ## Requirements
-- quart >= 0.18
-- redis >= 4.2
+- quart ~= 0.20
+- redis >= 5.2.1, < 6
 
 ## Example
 
@@ -55,7 +57,7 @@ async def _my_app():
 async def test_redis(my_app):
     async with my_app.test_client() as client:
         result = await client.get("/")
-        assert await result.data == b"it works!"
+        assert result == b"it works!"
 ```
 
 ## Faking Redis

@@ -16,7 +16,7 @@ class QuartAppTestCase(IsolatedAsyncioTestCase):
     async def asyncTearDown(self):
         await self.app.shutdown()
         await self.r.flushall(True)
-        await self.r.close()
+        await self.r.aclose()
 
     async def test_get_msg(self):
         async with self.app.test_client() as client:
